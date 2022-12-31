@@ -4,6 +4,7 @@ val coroutineVersion = "1.6.3"
 val mockkVersion = "1.10.3"
 val kotestVersion = "5.3.2"
 val springCloudVersion = "2021.0.2"
+val queryDslVersion = "5.0.0"
 
 plugins {
     id("org.springframework.boot")
@@ -13,6 +14,8 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
     kotlin("plugin.jpa")
+
+    kotlin("kapt")
 
     id("com.google.protobuf")
 }
@@ -30,6 +33,13 @@ allprojects {
 
     repositories {
         mavenCentral()
+        maven("https://jitpack.io")
+        maven("https://plugins.gradle.org/m2/")
+    }
+
+    // DuplicatesStrategy 설정
+    tasks.withType<Jar> {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 }
 
@@ -67,8 +77,10 @@ configure(subprojects.filter { it.name !in nonDependencyProjects }) {
 
         runtimeOnly("mysql:mysql-connector-java")
 
-        // Spring Cloud
-        implementation("org.springframework.cloud:spring-cloud-starter-config")
+        // queryDSL
+        implementation("com.querydsl:querydsl-jpa:$queryDslVersion")
+        kapt("com.querydsl:querydsl-apt:$queryDslVersion:jpa")
+        kapt("org.springframework.boot:spring-boot-configuration-processor")
 
         // mockk
         testImplementation("io.mockk:mockk:$mockkVersion")
@@ -76,15 +88,11 @@ configure(subprojects.filter { it.name !in nonDependencyProjects }) {
         testImplementation("io.kotest:kotest-assertions-core:$kotestVersion") // for kotest core jvm assertions
         testImplementation("io.kotest:kotest-property:$kotestVersion") // for kotest property test
         testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
-
-        // Annotation Processing Tool
-        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     }
 
-    dependencyManagement {
-        imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
-        }
+    // QueryDSL이 만들어주는 Qclass를 사용하기 위해 저 위치로 접근할 수 있도록 설정해주는 부분이다.
+    sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+        kotlin.srcDir("$buildDir/generated/source/kapt/main")
     }
 
     tasks.withType<KotlinCompile> {
