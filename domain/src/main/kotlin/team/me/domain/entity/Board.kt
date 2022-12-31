@@ -1,8 +1,8 @@
-package team.me.domain
+package team.me.domain.entity
 
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.DynamicUpdate
-import team.me.domain.common.BaseTimeEntity
+import team.me.domain.entity.common.BaseTimeEntity
 import javax.persistence.*
 
 /**

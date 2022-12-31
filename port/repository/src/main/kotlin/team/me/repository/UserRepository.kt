@@ -1,7 +1,7 @@
 package team.me.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
-import team.me.domain.User
+import team.me.domain.entity.User
 
 /**
  * @author Doyeop Kim

@@ -1,4 +1,4 @@
-package team.me.domain.common
+package team.me.domain.entity.common
 
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate

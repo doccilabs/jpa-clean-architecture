@@ -4,7 +4,6 @@ val coroutineVersion = "1.6.3"
 val mockkVersion = "1.10.3"
 val kotestVersion = "5.3.2"
 val springCloudVersion = "2021.0.2"
-val queryDslVersion = "5.0.0"
 
 plugins {
     id("org.springframework.boot")
@@ -52,6 +51,9 @@ configure(subprojects.filter { it.name !in nonDependencyProjects }) {
 
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-spring")
+    apply(plugin = "kotlin-jpa")
+
+    apply(plugin = "kotlin-kapt")
 
     apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
     apply(plugin = "org.jetbrains.kotlin.plugin.noarg")
@@ -77,22 +79,14 @@ configure(subprojects.filter { it.name !in nonDependencyProjects }) {
 
         runtimeOnly("mysql:mysql-connector-java")
 
-        // queryDSL
-        implementation("com.querydsl:querydsl-jpa:$queryDslVersion")
-        kapt("com.querydsl:querydsl-apt:$queryDslVersion:jpa")
-        kapt("org.springframework.boot:spring-boot-configuration-processor")
-
         // mockk
         testImplementation("io.mockk:mockk:$mockkVersion")
         testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion") // for kotest framework
         testImplementation("io.kotest:kotest-assertions-core:$kotestVersion") // for kotest core jvm assertions
         testImplementation("io.kotest:kotest-property:$kotestVersion") // for kotest property test
         testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion")
-    }
 
-    // QueryDSL이 만들어주는 Qclass를 사용하기 위해 저 위치로 접근할 수 있도록 설정해주는 부분이다.
-    sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
-        kotlin.srcDir("$buildDir/generated/source/kapt/main")
+        kapt("org.springframework.boot:spring-boot-configuration-processor")
     }
 
     tasks.withType<KotlinCompile> {
