@@ -12,6 +12,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.noarg")
     kotlin("jvm")
     kotlin("plugin.spring")
+    kotlin("plugin.jpa")
 
     id("com.google.protobuf")
 }
@@ -55,16 +56,20 @@ configure(subprojects.filter { it.name !in nonDependencyProjects }) {
         implementation("com.fasterxml.jackson.module:jackson-module-afterburner")
 
         // Kotlin Coroutines
-        implementation("org.springframework.boot:spring-boot-starter-webflux")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutineVersion")
 
+        // Spring
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+        runtimeOnly("mysql:mysql-connector-java")
+
         // Spring Cloud
         implementation("org.springframework.cloud:spring-cloud-starter-config")
 
-        // Test Implementation
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
         // mockk
         testImplementation("io.mockk:mockk:$mockkVersion")
         testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion") // for kotest framework
