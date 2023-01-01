@@ -1,7 +1,7 @@
 # Clean Architecture example with JPA
 
 ## Environment
-- Kotlin 2.6.6
+- Kotlin 1.5.0
 - SpringBoot version 2.6.6
 - Spring Data JPA
 
