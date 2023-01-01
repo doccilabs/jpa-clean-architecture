@@ -1,5 +1,6 @@
 package team.me.interactor.user
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import team.me.dto.user.UserOutbound
 import team.me.repository.user.UserRepository
@@ -14,7 +15,9 @@ class UserOutboundInteractor(
     private val userRepository: UserRepository
 ) : UserOutboundUsecase {
 
-    override fun findById(id: Long): UserOutbound.SimpleResponse {
-        TODO("Not yet implemented")
+    override fun findById(id: Long): UserOutbound.SimpleResponse? {
+        val foundUser = userRepository.findByIdOrNull(id)
+
+        return foundUser?.toSimpleResponse()
     }
 }

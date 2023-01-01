@@ -40,5 +40,7 @@ include(
 include(
     "adapter",
     "adapter:dao",
-    "adapter:interactor"
+    "adapter:interactor",
+    "adapter:application-inbound",
+    "adapter:application-outbound"
 )

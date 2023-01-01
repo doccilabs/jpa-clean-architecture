@@ -8,5 +8,5 @@ import team.me.dto.user.UserOutbound
  */
 interface UserOutboundUsecase {
 
-    fun findById(id: Long): UserOutbound.SimpleResponse
+    fun findById(id: Long): UserOutbound.SimpleResponse?
 }
