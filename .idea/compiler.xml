@@ -5,6 +5,12 @@
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel target="16">
+      <module name="application-inbound" target="11" />
+      <module name="application-inbound.main" target="11" />
+      <module name="application-inbound.test" target="11" />
+      <module name="application-outbound" target="11" />
+      <module name="application-outbound.main" target="11" />
+      <module name="application-outbound.test" target="11" />
       <module name="dto" target="11" />
       <module name="dto.main" target="11" />
       <module name="dto.test" target="11" />
