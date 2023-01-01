@@ -1,8 +1,8 @@
 dependencies {
-    api(project(":port:repository"))
+    api(project(":domain"))
 }
 
 // 해당 module은 테스트 대상에서 제외한다
 tasks.withType<Test> {
-    exclude("**/dao/**")
+    exclude("**/dto/**")
 }

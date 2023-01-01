@@ -1,11 +1,11 @@
-package team.me.dao
+package team.me.usecases
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DaoApplication
+class UsecasesApplication
 
 fun main(args: Array<String>) {
-	runApplication<DaoApplication>(*args)
+    runApplication<UsecasesApplication>(*args)
 }

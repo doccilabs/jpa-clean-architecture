@@ -11,11 +11,14 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/adapter" />
             <option value="$PROJECT_DIR$/adapter/dao" />
+            <option value="$PROJECT_DIR$/adapter/interactor" />
             <option value="$PROJECT_DIR$/commons" />
             <option value="$PROJECT_DIR$/commons/common" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/port" />
+            <option value="$PROJECT_DIR$/port/dto" />
             <option value="$PROJECT_DIR$/port/repository" />
+            <option value="$PROJECT_DIR$/port/usecases" />
           </set>
         </option>
       </GradleProjectSettings>

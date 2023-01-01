@@ -32,10 +32,13 @@ include(
 
 include(
     "port",
-    "port:repository"
+    "port:repository",
+    "port:usecases",
+    "port:dto"
 )
 
 include(
     "adapter",
-    "adapter:dao"
+    "adapter:dao",
+    "adapter:interactor"
 )

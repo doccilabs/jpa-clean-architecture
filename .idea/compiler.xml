@@ -4,6 +4,16 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
-    <bytecodeTargetLevel target="16" />
+    <bytecodeTargetLevel target="16">
+      <module name="dto" target="11" />
+      <module name="dto.main" target="11" />
+      <module name="dto.test" target="11" />
+      <module name="interactor" target="11" />
+      <module name="interactor.main" target="11" />
+      <module name="interactor.test" target="11" />
+      <module name="usecases" target="11" />
+      <module name="usecases.main" target="11" />
+      <module name="usecases.test" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
